@@ -1,0 +1,29 @@
+package db;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
+
+import javax.imageio.stream.FileImageInputStream;
+
+public class DB {
+
+	private static Properties loadProperites() {
+		
+		try(FileInputStream fs = new FileInputStream("db.properties")){
+			
+			
+			Properties props = new Properties();
+			props.load(fs);
+			return props;
+			
+		}
+		catch (IOException e) {
+			
+			throw new DbExecption(e.getMessage());
+			
+		}
+	}
+	
+	
+}

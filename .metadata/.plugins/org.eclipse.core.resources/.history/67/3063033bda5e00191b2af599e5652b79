@@ -1,0 +1,25 @@
+package db;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
+
+public class DB {
+
+	// Metodo para carregar as propriedades da conexao
+
+	private static Properties loadProperties() {
+
+		try (FileInputStream fs = new FileInputStream("db.properties")) {
+
+			Properties props = new Properties();
+			props.load(fs);
+			return props;
+
+		} catch (IOException e) {
+
+			throw new DbException(e.getMessage());
+		}
+
+	}
+}

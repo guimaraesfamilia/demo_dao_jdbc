@@ -1,0 +1,186 @@
+package com.model.entities;
+
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.SimpleDateFormat;
+
+import com.model.db.DB;
+import com.model.db.DbException;
+import com.model.services.IOperationsCrud;
+
+public class Seller implements IOperationsCrud {
+
+	private Connection conn = null;
+	private PreparedStatement pst = null;
+
+	private String name;
+	private String email;
+	private Date birthdate;
+	private Double basesalary;
+	private Integer departmentid;
+
+	public Seller() {
+
+	}
+
+	public Seller(String name, String email, Date birthdate, Double basesalary, Integer departmentid) {
+		super();
+		this.setName(name);
+		this.setEmail(email);
+		this.setBirthdate(birthdate);
+		this.setBasesalary(basesalary);
+		this.setDepartmentid(departmentid);
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Date getBirthdate() {
+		return birthdate;
+	}
+
+	public void setBirthdate(Date birthdate) {
+		this.birthdate = birthdate;
+	}
+
+	public Double getBasesalary() {
+		return basesalary;
+	}
+
+	public void setBasesalary(Double basesalary) {
+		this.basesalary = basesalary;
+	}
+
+	public Integer getDepartmentid() {
+		return departmentid;
+	}
+
+	public void setDepartmentid(Integer departmentid) {
+		this.departmentid = departmentid;
+	}
+
+	@Override
+	public int insert() {
+
+		int rowsaffected = 0;
+
+		try {
+
+			conn = DB.getConnection();
+			pst = conn.prepareStatement(
+
+					"insert into seller (Name,Email,BirthDate,BaseSalary,DepartmentId) values (?,?,?,?,?)"
+
+			);
+
+			pst.setString(1, this.getName());
+			pst.setString(2, this.getEmail());
+			pst.setDate(3, this.getBirthdate());
+			pst.setDouble(4, this.getBasesalary());
+			pst.setInt(5, this.getDepartmentid());
+
+			rowsaffected = pst.executeUpdate();
+
+		} catch (SQLException e) {
+
+			throw new DbException(e.getMessage());
+		} finally {
+
+			DB.closePrepareStatement(pst);
+		}
+
+		return rowsaffected;
+	}
+
+	@Override
+	public int update() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int delete(int id) {
+
+		int rowsaffected = 0;
+
+		try {
+
+			conn = DB.getConnection();
+			conn.setAutoCommit(false);
+			pst = conn.prepareStatement(
+
+					"delete from seller where Id = (?)");
+
+			pst.setInt(1, id);
+			rowsaffected = pst.executeUpdate();
+
+			conn.commit();
+
+		} catch (SQLException e) {
+
+			try {
+				conn.rollback();
+
+				throw new SQLException("Transation is rollback. Cause: " + e.getMessage() + "\n");
+
+			} catch (SQLException e1) {
+
+				System.out.println("Rollback  trayin is failed. Cause: " + e1.getMessage());
+			}
+
+			throw new DbException(e.getMessage());
+		} finally {
+
+			DB.closePrepareStatement(pst);
+		}
+
+		return rowsaffected;
+	}
+
+	@Override
+	public void list() {
+
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		Statement st = null;
+		ResultSet rs = null;
+
+		try {
+
+			conn = DB.getConnection();
+			st = conn.createStatement();
+			rs = st.executeQuery("select Id,Name,Email,BirthDate,BaseSalary from seller");
+
+			System.out.println(" Id" + "  -  Name" + "    -    Email" + "   -    BirthDate" + "  -  Base Salary");
+			System.out.println();
+			while (rs.next()) {
+
+				System.out.println(" " + rs.getInt("Id") + " - " + rs.getString("Name") + " - " + rs.getString("Email")
+						+ " - " + sdf.format(rs.getDate("BirthDate")) + " - "
+						+ String.format("%.2f", rs.getDouble("BaseSalary")));
+			}
+
+		} catch (SQLException e) {
+
+			throw new DbException(e.getMessage());
+		}
+
+	}
+
+}

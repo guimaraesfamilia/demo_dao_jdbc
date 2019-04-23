@@ -1,0 +1,39 @@
+package com.model.views;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Scanner;
+
+import com.model.db.DB;
+import com.model.db.DbExecption;
+
+public class Tela {
+
+	private static Scanner sc = new Scanner(System.in);
+	private static Connection conn = null;
+	private static Statement st = null;
+	private static ResultSet rs = null;
+
+	public static void mainProgram() {
+
+		sc.close();
+	}
+
+	private static void proced_1() {
+
+		try {
+
+			conn = DB.getConnection();
+			st = conn.createStatement();
+			rs = st.executeQuery("select * from department");
+
+		} catch (SQLException e) {
+
+			throw new DbExecption(e.getMessage());
+		}
+
+	}
+
+}

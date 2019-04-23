@@ -1,0 +1,2 @@
+INDEX VERSION 1.131+/home/fabio/Documents/workspace-spring-tool-suite-4-4.1.2.RELEASE/.metadata/.plugins/org.eclipse.jdt.core
+2147702149.index

@@ -1,0 +1,86 @@
+package com.model.entities;
+
+import java.sql.Date;
+
+import com.model.services.IOperationsCrud;
+
+public class Seller implements IOperationsCrud {
+
+	private String name;
+	private String email;
+	private Date birthdate;
+	private Double basesalary;
+	private Integer departmentid;
+
+	public Seller() {
+		super();
+	}
+
+	public Seller(String name, String email, Date birthdate, Double basesalary, Integer departmentid) {
+		super();
+		this.name = name;
+		this.email = email;
+		this.birthdate = birthdate;
+		this.basesalary = basesalary;
+		this.departmentid = departmentid;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Date getBirthdate() {
+		return birthdate;
+	}
+
+	public void setBirthdate(Date birthdate) {
+		this.birthdate = birthdate;
+	}
+
+	public Double getBasesalary() {
+		return basesalary;
+	}
+
+	public void setBasesalary(Double basesalary) {
+		this.basesalary = basesalary;
+	}
+
+	public Integer getDepartmentid() {
+		return departmentid;
+	}
+
+	public void setDepartmentid(Integer departmentid) {
+		this.departmentid = departmentid;
+	}
+
+	@Override
+	public int insert() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int update() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int delete() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

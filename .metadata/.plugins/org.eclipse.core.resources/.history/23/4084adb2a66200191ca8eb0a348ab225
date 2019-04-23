@@ -1,0 +1,83 @@
+package com.model.entities;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import com.model.db.DB;
+import com.model.db.DbException;
+import com.model.services.IOperationsCrud;
+
+public class Department implements IOperationsCrud {
+
+	private Connection conn = null;
+
+	private String name;
+
+	public Department() {
+		super();
+	}
+
+	public Department(String name) {
+		super();
+		this.setName(name);
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	@Override
+	public int insert() {
+
+		int rowsaffect = 0;
+		PreparedStatement pst = null;
+
+		try {
+
+			conn = DB.getConnection();
+			conn.setAutoCommit(false);
+
+			pst = conn.prepareStatement(
+
+					"insert into department (Name)values(?)"
+
+			);
+
+			rowsaffect = pst.executeUpdate();
+			conn.commit();
+
+		} catch (SQLException e) {
+
+			try {
+				conn.rollback();
+				System.out.println("Transation rollback! Cause: " + e.getMessage());
+
+			} catch (SQLException e1) {
+
+				System.out.println("Trying rollback failed. Cause: " + e1.getMessage());
+			}
+
+			throw new DbException(e.getMessage());
+		}
+
+		return rowsaffect;
+	}
+
+	@Override
+	public int update() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int delete() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;com.model.enums.TipoOperationCrud&apos; to &apos;TypeEntities&apos;&#x0A;- Original project: &apos;Jdbc5&apos;&#x0A;- Original element: &apos;com.model.enums.TipoOperationCrud&apos;&#x0A;- Renamed element: &apos;com.model.enums.TypeEntities&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;TipoOperationCrud&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;com.model.enums{TipoOperationCrud.java[TipoOperationCrud" matchStrategy="1" name="TypeEntities" qualified="false" references="true" similarDeclarations="false" stamp="1555678085610" textual="false" version="1.0"/>
+</session>

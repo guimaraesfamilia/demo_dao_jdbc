@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete element from project &apos;CalculoDeImpostos&apos;&#x0A;- Original project: &apos;CalculoDeImpostos&apos;&#x0A;- Original element: &apos;com.enums.individual.java&apos;" description="Delete element" element1="/src&lt;com.enums{individual.java" elements="1" flags="589830" id="org.eclipse.jdt.ui.delete" resources="0" stamp="1552219544331" subPackages="false" version="1.0"/>
+</session>

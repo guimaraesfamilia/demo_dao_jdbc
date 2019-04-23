@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename package &apos;db&apos; to &apos;com.model.db&apos;&#x0A;- Original project: &apos;Jdbc2&apos;&#x0A;- Original element: &apos;Jdbc2/src/db&apos;&#x0A;- Renamed element: &apos;Jdbc2/src/com.model.db&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" description="Rename package &apos;db&apos;" flags="589830" hierarchical="false" id="org.eclipse.jdt.ui.rename.package" input="/src&lt;db" name="com.model.db" qualified="false" references="true" stamp="1555262807134" textual="false" version="1.0"/>
+</session>

@@ -1,0 +1,13 @@
+package com.model.enums;
+
+import com.model.services.IOperationsCrud;
+
+public enum TypeEntities {
+
+	Department,
+	Seller;
+	
+	
+	public abstract IOperationsCrud obetOperation();
+	
+}
